@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="stair-lifts">
+    <path fill="#DFDBF7" d="M40 20h35v70H40V20z"/>
+    <path fill="#fff" d="M45 25h25v60H45V25z"/>
+    <path stroke="#352157" stroke-width="1.5" d="M45 25h25v60H45V25z"/>
+    <rect x="48" y="30" width="19" height="4" fill="#9315F6"/>
+    <rect x="48" y="40" width="19" height="4" fill="#9315F6"/>
+    <rect x="48" y="50" width="19" height="4" fill="#9315F6"/>
+    <rect x="48" y="60" width="19" height="4" fill="#9315F6"/>
+    <rect x="48" y="70" width="19" height="4" fill="#9315F6"/>
+    <path d="M50 35v5l15-5v-5z" fill="#B9B1E7"/>
+    <path d="M50 45v5l15-5v-5z" fill="#B9B1E7"/>
+    <path d="M50 55v5l15-5v-5z" fill="#B9B1E7"/>
+    <path d="M50 65v5l15-5v-5z" fill="#B9B1E7"/>
+    <path d="M50 75v5l15-5v-5z" fill="#B9B1E7"/>
+    <rect x="72" y="45" width="8" height="12" fill="#352157"/>
+    <rect x="74" y="47" width="4" height="8" fill="#DFDBF7"/>
+    <circle cx="76" cy="40" r="3" fill="#9315F6"/>
+    <path d="M73 57h6v3h-6v-3z" fill="#B9B1E7"/>
+    <path d="M25 85h65v10H25V85z" fill="#352157"/>
+  </g>
+</svg>

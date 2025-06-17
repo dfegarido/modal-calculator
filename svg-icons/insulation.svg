@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="insulation">
+    <path fill="#EFECFF" d="M15 20h85v75H15V20z"/>
+    <path fill="#B9B1E7" d="M20 25h75v65H20V25z"/>
+    <path stroke="#352157" stroke-width="1.5" d="M20 25h75v65H20V25z"/>
+    <path d="M25 30c5 3 10-3 15 0s10-3 15 0 10-3 15 0 10-3 15 0 10-3 15 0" stroke="#9315F6" stroke-width="2" fill="none"/>
+    <path d="M25 40c5 3 10-3 15 0s10-3 15 0 10-3 15 0 10-3 15 0 10-3 15 0" stroke="#9315F6" stroke-width="2" fill="none"/>
+    <path d="M25 50c5 3 10-3 15 0s10-3 15 0 10-3 15 0 10-3 15 0 10-3 15 0" stroke="#9315F6" stroke-width="2" fill="none"/>
+    <path d="M25 60c5 3 10-3 15 0s10-3 15 0 10-3 15 0 10-3 15 0 10-3 15 0" stroke="#9315F6" stroke-width="2" fill="none"/>
+    <path d="M25 70c5 3 10-3 15 0s10-3 15 0 10-3 15 0 10-3 15 0 10-3 15 0" stroke="#9315F6" stroke-width="2" fill="none"/>
+    <path d="M25 80c5 3 10-3 15 0s10-3 15 0 10-3 15 0 10-3 15 0 10-3 15 0" stroke="#9315F6" stroke-width="2" fill="none"/>
+    <rect x="30" y="35" width="4" height="45" fill="#DFDBF7"/>
+    <rect x="45" y="35" width="4" height="45" fill="#DFDBF7"/>
+    <rect x="60" y="35" width="4" height="45" fill="#DFDBF7"/>
+    <rect x="75" y="35" width="4" height="45" fill="#DFDBF7"/>
+  </g>
+</svg>

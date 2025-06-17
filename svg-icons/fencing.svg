@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="fencing">
+    <path fill="#B9B1E7" d="M10 85h95v20H10V85z"/>
+    <rect x="15" y="25" width="8" height="65" fill="#9315F6"/>
+    <rect x="27" y="25" width="8" height="65" fill="#9315F6"/>
+    <rect x="39" y="25" width="8" height="65" fill="#9315F6"/>
+    <rect x="51" y="25" width="8" height="65" fill="#9315F6"/>
+    <rect x="63" y="25" width="8" height="65" fill="#9315F6"/>
+    <rect x="75" y="25" width="8" height="65" fill="#9315F6"/>
+    <rect x="87" y="25" width="8" height="65" fill="#9315F6"/>
+    <rect x="12" y="35" width="88" height="6" fill="#fff" stroke="#352157" stroke-width="1.5"/>
+    <rect x="12" y="50" width="88" height="6" fill="#fff" stroke="#352157" stroke-width="1.5"/>
+    <rect x="12" y="65" width="88" height="6" fill="#fff" stroke="#352157" stroke-width="1.5"/>
+  </g>
+</svg>

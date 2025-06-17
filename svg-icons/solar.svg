@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="solar">
+    <path fill="#9315F6" d="M30 40h55v35H30V40z"/>
+    <path fill="#fff" d="M35 45h45v25H35V45z"/>
+    <path stroke="#352157" stroke-width="1.5" d="M35 45h45v25H35V45z"/>
+    <rect x="40" y="50" width="8" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="0.5"/>
+    <rect x="52" y="50" width="8" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="0.5"/>
+    <rect x="64" y="50" width="8" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="0.5"/>
+    <rect x="40" y="58" width="8" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="0.5"/>
+    <rect x="52" y="58" width="8" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="0.5"/>
+    <rect x="64" y="58" width="8" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="0.5"/>
+    <circle cx="57.5" cy="25" r="8" fill="#fff" stroke="#9315F6" stroke-width="2"/>
+    <path d="M57.5 10v6m0 18v6m15-15h-6m-18 0h-6m12.5-10.5l4.5 4.5m-13 13l4.5 4.5m8.5-4.5l-4.5 4.5m-13-13l-4.5 4.5" stroke="#9315F6" stroke-width="2"/>
+    <path d="M25 80h65v10H25V80z" fill="#B9B1E7"/>
+    <rect x="30" y="82" width="55" height="6" fill="#352157"/>
+    <path d="M45 35l12.5 10L70 35" stroke="#352157" stroke-width="1.5" fill="none"/>
+  </g>
+</svg>

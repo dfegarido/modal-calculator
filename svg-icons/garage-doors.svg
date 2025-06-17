@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="garage-doors">
+    <path fill="#B9B1E7" d="M20 15h75v85H20V15z"/>
+    <path fill="#fff" d="M25 20h65v75H25V20z"/>
+    <path stroke="#352157" stroke-width="1.5" d="M25 20h65v75H25V20z"/>
+    <rect x="30" y="25" width="55" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="1"/>
+    <rect x="30" y="38" width="55" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="1"/>
+    <rect x="30" y="51" width="55" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="1"/>
+    <rect x="30" y="64" width="55" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="1"/>
+    <rect x="30" y="77" width="55" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="1"/>
+    <circle cx="78" cy="55" r="3" fill="#9315F6"/>
+    <path d="M35 29h20v1h-20v-1zm25 0h20v1h-20v-1z" fill="#352157"/>
+    <path d="M35 42h20v1h-20v-1zm25 0h20v1h-20v-1z" fill="#352157"/>
+    <path d="M35 55h20v1h-20v-1zm25 0h15v1h-15v-1z" fill="#352157"/>
+    <path d="M35 68h20v1h-20v-1zm25 0h20v1h-20v-1z" fill="#352157"/>
+    <path d="M35 81h20v1h-20v-1zm25 0h20v1h-20v-1z" fill="#352157"/>
+  </g>
+</svg>

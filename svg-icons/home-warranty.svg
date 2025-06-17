@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="home-warranty">
+    <path fill="#B9B1E7" d="M20 25h75v65H20V25z"/>
+    <path fill="#fff" d="M25 30h65v55H25V30z"/>
+    <path stroke="#352157" stroke-width="1.5" d="M25 30h65v55H25V30z"/>
+    <path fill="#9315F6" d="M57.5 15l25 15H32.5l25-15z"/>
+    <path stroke="#352157" stroke-width="1.5" d="M57.5 15l25 15H32.5l25-15z"/>
+    <circle cx="57.5" cy="55" r="15" fill="#DFDBF7"/>
+    <path d="M50 50l7.5 10 15-20" stroke="#9315F6" stroke-width="2" fill="none"/>
+    <rect x="35" y="40" width="8" height="8" fill="#fff" stroke="#352157" stroke-width="1"/>
+    <rect x="72" y="40" width="8" height="8" fill="#fff" stroke="#352157" stroke-width="1"/>
+    <rect x="35" y="65" width="8" height="8" fill="#fff" stroke="#352157" stroke-width="1"/>
+    <rect x="72" y="65" width="8" height="8" fill="#fff" stroke="#352157" stroke-width="1"/>
+    <path d="M30 95h55v5H30v-5z" fill="#352157"/>
+  </g>
+</svg>

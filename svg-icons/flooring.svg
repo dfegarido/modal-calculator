@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="flooring">
+    <path fill="#B9B1E7" d="M10 20h95v75H10V20z"/>
+    <rect x="15" y="25" width="85" height="12" fill="#DFDBF7" stroke="#352157" stroke-width="1"/>
+    <rect x="15" y="40" width="85" height="12" fill="#fff" stroke="#352157" stroke-width="1"/>
+    <rect x="15" y="55" width="85" height="12" fill="#DFDBF7" stroke="#352157" stroke-width="1"/>
+    <rect x="15" y="70" width="85" height="12" fill="#fff" stroke="#352157" stroke-width="1"/>
+    <rect x="15" y="85" width="85" height="8" fill="#9315F6"/>
+    <path d="M25 30h10v2h-10v-2zm20 0h10v2h-10v-2zm20 0h10v2h-10v-2z" fill="#352157"/>
+    <path d="M25 45h10v2h-10v-2zm20 0h10v2h-10v-2zm20 0h10v2h-10v-2z" fill="#352157"/>
+  </g>
+</svg>

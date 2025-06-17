@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="water-damage">
+    <path fill="#DFDBF7" d="M35 30h45v60H35V30z"/>
+    <path fill="#fff" d="M40 35h35v50H40V35z"/>
+    <path stroke="#352157" stroke-width="1.5" d="M40 35h35v50H40V35z"/>
+    <path fill="#9315F6" d="M57.5 15c-8 0-15 8-15 18s7 18 15 18 15-8 15-18-7-18-15-18z"/>
+    <path fill="#B9B1E7" d="M57.5 20c-5 0-10 5-10 13s5 13 10 13 10-5 10-13-5-13-10-13z"/>
+    <path fill="#fff" d="M57.5 25c-3 0-5 3-5 8s2 8 5 8 5-3 5-8-2-8-5-8z"/>
+    <path d="M45 55c2-3 5-2 8-5s6-1 9-4c3-3 6-2 8-5" stroke="#9315F6" stroke-width="2" fill="none"/>
+    <path d="M45 65c2-2 4-1 6-3s4-1 6-3 4-1 6-3s4-1 6-3" stroke="#9315F6" stroke-width="1.5" fill="none"/>
+    <path d="M45 75c3-2 6-1 9-3s6-1 9-3" stroke="#9315F6" stroke-width="1.5" fill="none"/>
+    <circle cx="50" cy="45" r="2" fill="#B9B1E7"/>
+    <circle cx="65" cy="50" r="2" fill="#B9B1E7"/>
+    <circle cx="55" cy="70" r="1.5" fill="#DFDBF7"/>
+    <path d="M30 90h55v8H30v-8z" fill="#352157"/>
+  </g>
+</svg>

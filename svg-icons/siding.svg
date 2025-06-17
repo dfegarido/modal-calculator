@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="siding">
+    <path fill="#B9B1E7" d="M15 25h85v70H15V25z"/>
+    <path fill="#fff" d="M20 30h75v60H20V30z"/>
+    <path stroke="#352157" stroke-width="1.5" d="M20 30h75v60H20V30z"/>
+    <rect x="20" y="35" width="75" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="0.5"/>
+    <rect x="20" y="45" width="75" height="8" fill="#fff" stroke="#352157" stroke-width="0.5"/>
+    <rect x="20" y="55" width="75" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="0.5"/>
+    <rect x="20" y="65" width="75" height="8" fill="#fff" stroke="#352157" stroke-width="0.5"/>
+    <rect x="20" y="75" width="75" height="8" fill="#DFDBF7" stroke="#352157" stroke-width="0.5"/>
+    <path d="M25 38h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2z" fill="#9315F6"/>
+    <path d="M25 48h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2z" fill="#9315F6"/>
+    <path d="M25 58h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2z" fill="#9315F6"/>
+    <path d="M25 68h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2z" fill="#9315F6"/>
+    <path d="M25 78h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2zm10 0h5v2h-5v-2z" fill="#9315F6"/>
+  </g>
+</svg>

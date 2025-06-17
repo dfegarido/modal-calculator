@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="foundations">
+    <path fill="#DFDBF7" d="M5 75h105v30H5V75z"/>
+    <path fill="#B9B1E7" d="M15 45h85v35H15V45z"/>
+    <path fill="#fff" d="M25 15h65v35H25V15z"/>
+    <path stroke="#352157" stroke-width="1.5" d="M25 15h65v35H25V15z"/>
+    <rect x="10" y="80" width="95" height="8" fill="#352157"/>
+    <rect x="20" y="88" width="75" height="12" fill="#9315F6"/>
+    <path d="M30 25h10v20h-10V25zm15 0h10v20h-10V25zm15 0h10v20h-10V25zm15 0h10v20h-10V25z" fill="#DFDBF7"/>
+    <circle cx="35" cy="60" r="3" fill="#352157"/>
+    <circle cx="50" cy="60" r="3" fill="#352157"/>
+    <circle cx="65" cy="60" r="3" fill="#352157"/>
+    <circle cx="80" cy="60" r="3" fill="#352157"/>
+  </g>
+</svg>

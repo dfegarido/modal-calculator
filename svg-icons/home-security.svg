@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="home-security">
+    <path fill="#9315F6" d="M57.5 15l40 22v50l-40 8-40-8V37l40-22z"/>
+    <path fill="#fff" d="M57.5 25l30 17v40l-30 6-30-6V42l30-17z"/>
+    <path stroke="#352157" stroke-width="1.5" d="M57.5 25l30 17v40l-30 6-30-6V42l30-17z"/>
+    <circle cx="57.5" cy="55" r="12" fill="#DFDBF7"/>
+    <circle cx="57.5" cy="55" r="8" fill="#9315F6"/>
+    <circle cx="57.5" cy="55" r="4" fill="#fff"/>
+    <path d="M50 75h15v8h-15v-8z" fill="#352157"/>
+    <rect x="52" y="77" width="11" height="4" fill="#fff"/>
+    <circle cx="45" cy="40" r="2" fill="#B9B1E7"/>
+    <circle cx="70" cy="40" r="2" fill="#B9B1E7"/>
+    <circle cx="45" cy="70" r="2" fill="#B9B1E7"/>
+    <circle cx="70" cy="70" r="2" fill="#B9B1E7"/>
+  </g>
+</svg>

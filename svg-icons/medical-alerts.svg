@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="medical-alerts">
+    <circle cx="57.5" cy="40" r="22" fill="#9315F6"/>
+    <circle cx="57.5" cy="40" r="18" fill="#fff"/>
+    <path d="M52.5 35h10v10h-10v-10z" fill="#9315F6"/>
+    <path d="M47.5 40h20v3h-20v-3z" fill="#9315F6"/>
+    <rect x="47.5" y="65" width="20" height="25" fill="#DFDBF7" stroke="#352157" stroke-width="1.5"/>
+    <rect x="50" y="68" width="15" height="3" fill="#352157"/>
+    <rect x="50" y="73" width="15" height="3" fill="#352157"/>
+    <rect x="50" y="78" width="15" height="3" fill="#352157"/>
+    <rect x="50" y="83" width="15" height="3" fill="#352157"/>
+    <path d="M40 55h35v5H40v-5z" fill="#B9B1E7"/>
+    <circle cx="35" cy="30" r="4" fill="#DFDBF7"/>
+    <circle cx="80" cy="30" r="4" fill="#DFDBF7"/>
+    <path d="M30 25c0-3 2-5 5-5s5 2 5 5" stroke="#352157" stroke-width="2" fill="none"/>
+    <path d="M75 25c0-3 2-5 5-5s5 2 5 5" stroke="#352157" stroke-width="2" fill="none"/>
+  </g>
+</svg>

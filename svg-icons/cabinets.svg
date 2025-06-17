@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="cabinets">
+    <path fill="#B9B1E7" d="M111.96 102.26l-95.06.46-8.53-6.66 98.26-74.43 5.33 5.46v75.17z"/>
+    <path fill="#fff" d="M8.37 18.94h98.26v77.12H8.37V18.94z"/>
+    <path stroke="#352157" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.37 18.94H57.5v77.12H8.37V18.94z"/>
+    <path fill="#9315F6" d="M14.96 25.19h33.92V90.3H14.96V25.19z"/>
+    <path fill="#fff" d="M18.91 28.53h26.41V87H18.91V28.53z"/>
+    <path stroke="#352157" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.96 90.29V25.18h33.92"/>
+    <path fill="#9315F6" d="M53.29 74.45h-.01c-.64 0-1.16.52-1.16 1.16V88.8c0 .64.52 1.16 1.16 1.16h.01c.64 0 1.16-.52 1.16-1.16V75.61c0-.64-.52-1.16-1.16-1.16z"/>
+    <path stroke="#352157" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M54.45 75.61a1.16 1.16 0 0 0-1.17-1.16 1.16 1.16 0 0 0-1.16 1.16V88.8a1.16 1.16 0 0 0 1.16 1.2m4.22-71.06h49.13v77.12H57.5V18.94z"/>
+    <path fill="#9315F6" d="M66.46 25.19h33.92V90.3H66.46V25.19z"/>
+    <path fill="#9315F6" d="M66.46 25.19h33.92V90.3H66.46V25.19z"/>
+    <path fill="#fff" d="M70.41 28.53h26.41V87H70.41V28.53z"/>
+    <path stroke="#352157" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M66.46 90.29V25.18h33.93"/>
+    <path fill="#9315F6" d="M61.96 74.45h-.01c-.64 0-1.16.52-1.16 1.16V88.8c0 .64.52 1.16 1.16 1.16h.01c.64 0 1.16-.52 1.16-1.16V75.61c0-.64-.52-1.16-1.16-1.16z"/>
+    <path stroke="#352157" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M63.11 75.61A1.16 1.16 0 0 0 62 74.45a1.16 1.16 0 0 0-1.16 1.16V88.8A1.16 1.16 0 0 0 62 90"/>
+  </g>
+</svg>

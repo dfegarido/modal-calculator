@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="water-treatment">
+    <circle cx="57.5" cy="57.5" r="35" fill="#B9B1E7"/>
+    <circle cx="57.5" cy="57.5" r="30" fill="#fff"/>
+    <circle cx="57.5" cy="57.5" r="25" fill="#DFDBF7"/>
+    <path stroke="#352157" stroke-width="1.5" d="M57.5 32.5a25 25 0 1 1 0 50 25 25 0 0 1 0-50z"/>
+    <rect x="50" y="40" width="15" height="35" fill="#9315F6"/>
+    <rect x="52" y="42" width="11" height="31" fill="#fff"/>
+    <circle cx="57.5" cy="50" r="3" fill="#B9B1E7"/>
+    <circle cx="57.5" cy="60" r="3" fill="#B9B1E7"/>
+    <circle cx="57.5" cy="70" r="3" fill="#B9B1E7"/>
+    <path d="M40 30c2 3 4 1 6 4s4 1 6 4" stroke="#9315F6" stroke-width="1.5" fill="none"/>
+    <path d="M75 30c-2 3-4 1-6 4s-4 1-6 4" stroke="#9315F6" stroke-width="1.5" fill="none"/>
+    <path d="M40 85c2-3 4-1 6-4s4-1 6-4" stroke="#9315F6" stroke-width="1.5" fill="none"/>
+    <path d="M75 85c-2-3-4-1-6-4s-4-1-6-4" stroke="#9315F6" stroke-width="1.5" fill="none"/>
+    <rect x="45" y="35" width="25" height="3" fill="#352157"/>
+    <rect x="45" y="77" width="25" height="3" fill="#352157"/>
+  </g>
+</svg>

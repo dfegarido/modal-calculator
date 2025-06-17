@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115" fill="none">
+  <g id="walk-in-tubs">
+    <path fill="#B9B1E7" d="M25 45h65v45H25V45z"/>
+    <path fill="#fff" d="M30 50h55v35H30V50z"/>
+    <path stroke="#352157" stroke-width="1.5" d="M30 50h55v35H30V50z"/>
+    <path fill="#DFDBF7" d="M35 55h45v25H35V55z"/>
+    <rect x="25" y="45" width="8" height="25" fill="#9315F6"/>
+    <rect x="27" y="48" width="4" height="19" fill="#fff"/>
+    <path d="M29 53h2v2h-2v-2zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2z" fill="#352157"/>
+    <circle cx="40" cy="65" r="2" fill="#9315F6"/>
+    <circle cx="50" cy="62" r="2" fill="#9315F6"/>
+    <circle cx="60" cy="65" r="2" fill="#9315F6"/>
+    <circle cx="70" cy="62" r="2" fill="#9315F6"/>
+    <path d="M35 90h45v8H35v-8z" fill="#352157"/>
+    <rect x="37" y="92" width="41" height="4" fill="#DFDBF7"/>
+    <rect x="82" y="55" width="6" height="8" fill="#352157"/>
+    <circle cx="85" cy="59" r="1.5" fill="#fff"/>
+  </g>
+</svg>
