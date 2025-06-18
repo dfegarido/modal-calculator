@@ -16,7 +16,7 @@
     color: black;
 }
 
-/* Modal Styles */
+
 .modal {
     display: none;
     position: fixed;
@@ -52,9 +52,9 @@
     }
 }
 
-.modal-header {
+.get-pro-modal-header {
     background: black;
-    color: white;
+ 
     padding: 20px;
     display: flex;
     justify-content: center;
@@ -63,10 +63,11 @@
     position: relative;
 }
 
-.modal-header h2 {
+.get-pro-modal-header h2 {
     margin: 0;
     font-size: 1.5rem;
     text-align: center;
+       color: white !important;
 }
 
 .close {
@@ -84,7 +85,7 @@
     color: #999;
 }
 
-/* Modal Body Styles */
+
 .modal-body {
     padding: 30px;
     line-height: 1.6;
@@ -129,7 +130,7 @@
     gap: 8px;
 }
 
-/* Services Grid Styles */
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -173,7 +174,7 @@
     margin: 0;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .modal-content {
         width: 95%;
