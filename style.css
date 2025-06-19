@@ -110,7 +110,7 @@ small, .subtle, .muted {
     margin: 0;
     font-size: 1.5rem;
     text-align: center;
-       color: black !important;
+       color: #fff !important;
 }
 
 .close {
@@ -729,6 +729,20 @@ small, .subtle, .muted {
 }
 #editSummaryBtn.step-btn:hover {
     background: var(--main-bg);
+}
+
+.step-summary .disclaimer {
+    margin-top: 24px;
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    display: block;
 }
 
 @media (max-width: 768px) {

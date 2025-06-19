@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const step2ZipHTML = `
         <div id="step2-zip" class="step-zip">
             <h2 class="step-h2">What is your zip code?</h2>
-            <input type="text" id="zipCode" name="zipCode" maxlength="10" placeholder="Zip Code" class="step-input" required />
+            <input type="text" id="zipCode" name="zipCode" maxlength="10" placeholder="Zip Code" class="step-input" />
         </div>
     `;
 
@@ -99,11 +99,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <h2 class="step-h2">Please enter your full name</h2>
             <div>
                 <label for="firstName">First Name</label><br>
-                <input type="text" id="firstName" name="firstName" placeholder="First Name" class="step-input" required />
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" class="step-input" />
             </div>
             <div>
                 <label for="lastName">Last Name</label><br>
-                <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="step-input" required />
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="step-input" />
             </div>
         </div>
     `;
@@ -114,11 +114,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <h2 class="step-h2">How can we contact you?</h2>
             <div>
                 <label for="email">Email Address</label><br>
-                <input type="email" id="email" name="email" placeholder="jane.doe@email.com" class="step-input" required />
+                <input type="email" id="email" name="email" placeholder="jane.doe@email.com" class="step-input" />
             </div>
             <div>
                 <label for="phone">Phone Number</label><br>
-                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" class="step-input" required />
+                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" class="step-input" />
             </div>
         </div>
     `;
@@ -184,19 +184,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         <li><strong>Email:</strong> ${formData.email}</li>
                         <li><strong>Phone:</strong> ${formData.phone}</li>
                     </ul>
-                    <button id="editSummaryBtn" class="step-btn">Edit</button>
+                    <div class="disclaimer" style="margin-top: 24px; font-size: 12px; color: #888; text-align: center; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        By submitting your request, you agree to be contacted by phone, text, or email by our network of home service professionals. Calls may be auto-dialed or pre-recorded. Consent is not required for purchase.
+                    </div>
                 </div>
             `;
-            // Add event listener for Edit button
-            setTimeout(() => {
-                const editBtn = document.getElementById('editSummaryBtn');
-                if (editBtn) {
-                    editBtn.onclick = function() {
-                        currentStep = 0;
-                        updateStepModal();
-                    };
-                }
-            }, 0);
         }
         // Calculate percentage for progress bar
         const stepsCount = 5; // total steps
@@ -271,25 +263,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function validateStep() {
-        if (currentStep === 0) {
-            return document.querySelector('input[name="nature"]:checked');
-        }
-        if (currentStep === 1) {
-            const zip = document.getElementById('zipCode');
-            return zip && zip.value.trim().length > 0;
-        }
-        if (currentStep === 2) {
-            const first = document.getElementById('firstName');
-            const last = document.getElementById('lastName');
-            return first && last && first.value.trim().length > 0 && last.value.trim().length > 0;
-        }
         if (currentStep === 3) {
-            const email = document.getElementById('email');
-            const phone = document.getElementById('phone');
-            return email && phone &&
-                validateEmail(email.value.trim()) &&
-                validatePhone(phone.value.trim());
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const email = emailInput ? emailInput.value.trim() : '';
+            const phone = phoneInput ? phoneInput.value.trim() : '';
+            // Basic email regex
+            const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            // Only require phone to be filled and numeric
+            const phoneValid = phone.length > 0 && /^\d+$/.test(phone.replace(/[^\d]/g, ''));
+            return emailValid && phoneValid;
         }
+        // Validation removed for all steps
         return true;
     }
 
