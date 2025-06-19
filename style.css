@@ -1,4 +1,44 @@
+/* Global color variables */
+:root {
+    --main-text: #084929;
+    --main-bg: #004b2e;
+    --accent-bg: #1cb75d;
+    --secondary-text: #808285;
+}
 
+body {
+    color: var(--main-text);
+    background-color: var(--main-bg);
+}
+
+/* Example usage for secondary colors */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--main-text);
+}
+
+a {
+    color: var(--accent-bg);
+}
+
+/* Optional: override modal and other elements for consistency */
+.modal-content {
+    background-color: var(--accent-bg);
+    color: var(--main-text);
+}
+
+.get-pro-modal-header {
+    background: var(--main-text);
+    color: #fff;
+}
+
+.modal-body, .modal-body p, .modal-body h3, .modal-body h4, .modal-body li {
+    color: var(--main-text);
+}
+
+/* Subtle text */
+small, .subtle, .muted {
+    color: var(--secondary-text);
+}
 
 .open-btn {
     background: black;
@@ -25,7 +65,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.65); /* Slightly darker overlay */
 }
 
 .modal-content {
@@ -39,6 +79,8 @@
     animation: modalSlideIn 0.3s ease-out;
     max-height: 90vh;
     overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25); /* More classic shadow */
+    padding-bottom: 20px;
 }
 
 @keyframes modalSlideIn {
@@ -174,6 +216,517 @@
     margin: 0;
 }
 
+/* Step Modal Progress Bar */
+.step-modal-progress-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 30px 10px 30px;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: none;
+}
+.progress-bar-container {
+    width: 100%;
+    background: #e5e7eb; /* light gray */
+    border-radius: 8px;
+    height: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    position: relative;
+}
+.progress-bar {
+    height: 100%;
+    background: #1cb75d; /* solid green */
+    border-radius: 8px;
+    transition: width 0.3s;
+}
+.progress-step-label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0;
+}
+.step-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 18px 30px 18px 30px;
+    background: #f7f7f7;
+    border-top: 1px solid #e0e0e0;
+}
+.step-btn {
+    background: linear-gradient(90deg, #0078d4 0%, #00b4d8 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    box-shadow: none;
+    padding: 12px 36px;
+    font-size: 1.1rem;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.step-btn:hover, .step-btn:focus {
+    background: linear-gradient(90deg, #005fa3 0%, #0096b3 100%);
+    outline: none;
+}
+
+/* Classic Step Indicator Styles */
+.classic-step-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 18px 0 0 0;
+    gap: 8px;
+}
+.step-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f3f4f6;
+    border: 2px solid #d1d5db;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.05rem;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.step-circle.active {
+    background: #0078d4;
+    color: #fff;
+    border-color: #0078d4;
+}
+.step-line {
+    width: 28px;
+    height: 2px;
+    background: #d1d5db;
+}
+
+/* Step 1 Nature of Project Styles */
+.step-h2 {
+    font-size: 1.4rem;
+    margin-bottom: 22px;
+    color: #111;
+    text-align: center;
+}
+.nature-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+.nature-radio {
+    display: flex;
+    align-items: center;
+    border: 2px solid #222;
+    border-radius: 8px;
+    padding: 16px 28px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fafafa;
+    font-size: 1.1rem;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+.nature-radio input[type="radio"] {
+    accent-color: #111;
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
+}
+.nature-radio input[type="radio"]:focus + .nature-radio-label {
+    outline: 2px solid #111;
+}
+.nature-radio-label {
+    user-select: none;
+}
+.nature-radio input[type="radio"]:checked + .nature-radio-label {
+    font-weight: bold;
+    color: #111;
+}
+.nature-radio:hover, .nature-radio input[type="radio"]:focus-visible {
+    border-color: #0078d4;
+    box-shadow: 0 0 0 2px #0078d433;
+}
+
+/* Make the stepModal a long modal: even wider, still long height */
+#stepModal .modal-content {
+    width: 550px !important;
+    min-width: 400px;
+    max-width: 99vw;
+    height: 80vh;
+    min-height: 500px;
+    max-height: 95vh;
+    margin: 3vh auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#stepModal .modal-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 24px 20px;
+}
+
+#stepModal .step-modal-footer {
+    border-radius: 0 0 5px 5px;
+}
+
+#stepContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-name div {
+    margin-bottom: 18px;
+}
+.step-name label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #222;
+}
+.step-name input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #bbb;
+    border-radius: 5px;
+    font-size: 1.05rem;
+    margin-bottom: 2px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+.step-name input[type="text"]:focus {
+    border-color: #0078d4;
+    outline: none;
+}
+
+/* --- Flat, Creative Step 2-4 Styles --- */
+.step-details, .step-contact, .step-confirm {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    padding: 32px 24px;
+    margin-top: 18px;
+    width: 100%;
+    max-width: 420px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.step-form-group {
+    width: 100%;
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.step-contact {
+    padding: 0;
+}
+.step-label {
+    font-size: 1rem;
+    color: #222;
+    margin-bottom: 7px;
+    font-weight: 500;
+}
+.step-input, .step-input:focus, .step-input:active {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 6px;
+    background: #f9fafb;
+    font-size: 1rem;
+    color: #222;
+    outline: none;
+    transition: border-color 0.2s;
+    box-shadow: none;
+}
+.step-input:focus {
+    border-color: #0078d4;
+}
+.step-confirm-box {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: #f3f4f6;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+}
+.step-confirm-icon {
+    font-size: 2.2rem;
+    color: #00b894;
+    background: #eafaf3;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.step-confirm-message {
+    font-size: 1.1rem;
+    color: #222;
+    font-weight: 500;
+}
+#submitStep {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* Step Modal Custom Theme Update */
+#stepModal .modal-content {
+    background-color: #fff;
+    color: #084929;
+}
+
+#stepModal .get-pro-modal-header {
+    background: #084929;
+    color: #fff;
+}
+
+#stepModal .modal-body,
+#stepModal .modal-body p,
+#stepModal .modal-body h3,
+#stepModal .modal-body h4,
+#stepModal .modal-body li,
+#stepModal .step-h2 {
+    color: #084929;
+}
+
+#stepModal .progress-bar {
+    background-color: #1cb75d;
+}
+
+#stepModal .step-btn,
+#stepModal button,
+#stepModal .btn {
+    background-color: #1cb75d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 24px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#stepModal .step-btn:hover,
+#stepModal button:hover,
+#stepModal .btn:hover {
+    background-color: #168f48;
+}
+
+#stepModal .step-circle.active {
+    background-color: #084929;
+    color: #fff;
+}
+
+#stepModal .step-circle {
+    background-color: #808285;
+    color: #fff;
+}
+
+#stepModal .step-line {
+    background-color: #004b2e;
+}
+
+#stepModal .nature-radio-label {
+    color: #084929;
+}
+
+#stepModal .close-step-modal {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#stepModal .close-step-modal:hover {
+    color: #999;
+}
+
+#stepModal small, #stepModal .subtle, #stepModal .muted {
+    color: #808285;
+}
+
+/* Remove blue and set accent green for step modal progress and buttons */
+#stepModal .step-modal-progress-header {
+    background: #fff;
+}
+#stepModal .progress-bar-container {
+    background: #1cb75d;
+}
+#stepModal .progress-bar {
+    background: #fff;
+}
+#stepModal .step-btn,
+#stepModal button,
+#stepModal .btn {
+    background: #1cb75d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 24px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: none;
+}
+#stepModal .step-btn:hover,
+#stepModal button:hover,
+#stepModal .btn:hover {
+    background: #168f48;
+}
+
+/* Remove blue gradients and backgrounds for step modal */
+#stepModal .progress-bar,
+#stepModal .step-btn,
+#stepModal .step-btn:hover,
+#stepModal .step-btn:focus {
+    background: #1cb75d !important;
+    color: #fff !important;
+    box-shadow: none !important;
+}
+
+/* Step 5 Summary Flat Card Style */
+#stepModal .step-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 0 0 0;
+}
+#stepModal .summary-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(28,183,93,0.08), 0 1.5px 4px rgba(0,0,0,0.03);
+    padding: 32px 40px;
+    display: flex;
+    gap: 40px;
+    margin-bottom: 32px;
+    width: 100%;
+    max-width: 600px;
+    justify-content: space-between;
+}
+#stepModal .summary-section {
+    flex: 1;
+}
+#stepModal .summary-title {
+    font-size: 1.15rem;
+    color: #084929;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+#stepModal .summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#stepModal .summary-list li {
+    background: #f6f8f7;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 8px;
+    color: #084929;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+#stepModal #finishStep {
+    margin-top: 12px;
+    width: 180px;
+    background: #1cb75d;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    box-shadow: none;
+}
+#stepModal #finishStep:hover {
+    background: #168f48;
+}
+
+/* Beautiful Summary Card Styles */
+.beautiful-summary-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 6px rgba(0,0,0,0.08);
+    padding: 2.5rem 2rem 2rem 2rem;
+    max-width: 520px;
+    margin: 2rem auto 1rem auto;
+    text-align: left;
+    position: relative;
+    animation: fadeInSummary 0.7s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes fadeInSummary {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.beautiful-summary-card h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--main-bg);
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+.summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+.summary-list li {
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
+    padding-left: 1.5em;
+    position: relative;
+}
+.summary-list li:before {
+    content: '\2713';
+    color: var(--accent-bg);
+    position: absolute;
+    left: 0;
+    font-size: 1.2em;
+    top: 0.1em;
+}
+
+.summary-thankyou {
+    margin-top: 2.5rem;
+    text-align: center;
+    color: var(--main-bg);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+#editSummaryBtn.step-btn {
+    display: block;
+    margin: 1.5rem auto 0 auto;
+    background: var(--accent-bg);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 2.2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#editSummaryBtn.step-btn:hover {
+    background: var(--main-bg);
+}
 
 @media (max-width: 768px) {
     .modal-content {
@@ -203,6 +756,18 @@
     .service-column {
         padding: 15px;
     }
+    
+    .classic-step-indicator {
+        gap: 6px;
+    }
+    .step-circle {
+        width: 24px;
+        height: 24px;
+        font-size: 0.95rem;
+    }
+    .step-line {
+        width: 18px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -219,4 +784,47 @@
     .service-name {
         font-size: 0.8rem;
     }
+}
+
+/* Step progress bar step markers - color only, no border */
+.progress-bar-step-marker {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: #e5e7eb; /* default: same as bar background */
+    border-radius: 50%;
+    z-index: 2;
+    transition: background 0.2s;
+    box-sizing: border-box;
+}
+.progress-bar-step-marker.done {
+    background: #1cb75d; /* green for completed */
+}
+.progress-bar-container {
+    position: relative;
+    width: 100%;
+    background: #e5e7eb;
+    border-radius: 8px;
+    height: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+/* Progress bar percentage marker above the bar */
+.progress-bar-percentage {
+    position: absolute;
+    left: 50%;
+    top: -32px;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1cb75d;
+    background: #fff;
+    padding: 2px 16px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(28,183,93,0.08);
+    z-index: 3;
+    pointer-events: none;
 }

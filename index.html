@@ -205,6 +205,115 @@
         </div>
     </div>
 
-    <script src="get-pro-modal.js"></script>
+    <script src="get-pro-modals.js"></script>
+
+    
+    <div id="stepModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="get-pro-modal-header">
+                <h2 id="stepModalTitle">Service Steps</h2>
+                <span class="close-step-modal">&times;</span>
+            </div>
+            <div class="step-modal-progress-header">
+                <div class="progress-bar-container">
+                    <div id="progressBar" class="progress-bar" style="width: 25%;"></div>
+                </div>
+                <div class="progress-step-label" id="progressStepLabel">Step 1 of 5</div>
+                <div class="classic-step-indicator">
+                    <span class="step-circle active">1</span>
+                    <span class="step-line"></span>
+                    <span class="step-circle">2</span>
+                    <span class="step-line"></span>
+                    <span class="step-circle">3</span>
+                    <span class="step-line"></span>
+                    <span class="step-circle">4</span>
+                    <span class="step-line"></span>
+                    <span class="step-circle">5</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="stepContent">
+       
+                    <div id="step1-nature" class="step-nature" style="display: block;">
+                        <h2 class="step-h2">What is the nature of your project?</h2>
+                        <div class="nature-radio-group">
+                            <label class="nature-radio">
+                                <input type="radio" name="nature" value="replace-install">
+                                <span class="nature-radio-label">Replace or install</span>
+                            </label>
+                            <label class="nature-radio">
+                                <input type="radio" name="nature" value="repair">
+                                <span class="nature-radio-label">Repair</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div id="step2-details" class="step-details" style="display: none;">
+                        <h2 class="step-h2">Tell us more about your project</h2>
+                        <div class="step-form-group">
+                            <label for="projectDescription" class="step-label">Project Description</label>
+                            <textarea id="projectDescription" class="step-input" rows="3" placeholder="Describe your project in a few words..."></textarea>
+                        </div>
+                        <div class="step-form-group">
+                            <label for="urgency" class="step-label">How urgent is your project?</label>
+                            <select id="urgency" class="step-input">
+                                <option value="soon">As soon as possible</option>
+                                <option value="weeks">In a few weeks</option>
+                                <option value="months">Just planning</option>
+                            </select>
+                        </div>
+                    </div>
+                 
+                    <div id="step3-contact" class="step-contact" style="display: none;">
+                        <h2 class="step-h2">How can we contact you?</h2>
+                        <div class="step-form-group">
+                            <label for="name" class="step-label">Your Name</label>
+                            <input type="text" id="name" class="step-input" placeholder="Full Name">
+                        </div>
+                        <div class="step-form-group">
+                            <label for="email" class="step-label">Email Address</label>
+                            <input type="email" id="email" class="step-input" placeholder="you@email.com">
+                        </div>
+                        <div class="step-form-group">
+                            <label for="phone" class="step-label">Phone Number</label>
+                            <input type="tel" id="phone" class="step-input" placeholder="(555) 123-4567">
+                        </div>
+                    </div>
+                  
+                    <div id="step4-confirm" class="step-confirm" style="display: none;">
+                        <h2 class="step-h2">Review & Confirm</h2>
+                        <div class="step-confirm-box">
+                            <div class="step-confirm-icon">✔️</div>
+                            <div class="step-confirm-message">Thank you! Please review your details and click Submit to finish.</div>
+                        </div>
+                        <button class="step-btn" id="submitStep">Submit</button>
+                    </div>
+                    
+                    <div id="step5-summary" class="step-summary" style="display: none;">
+                        <h2 class="step-h2">Summary</h2>
+                        <div class="summary-card">
+                            <div class="summary-section">
+                                <h3 class="summary-title">Project Details</h3>
+                                <ul class="summary-list" id="summaryProjectDetails">
+                                 
+                                </ul>
+                            </div>
+                            <div class="summary-section">
+                                <h3 class="summary-title">Contact Info</h3>
+                                <ul class="summary-list" id="summaryContactInfo">
+                              
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="step-btn" id="finishStep">Finish</button>
+                    </div>
+                </div>
+            </div>
+            <div class="step-modal-footer">
+                <button id="prevStep" class="step-btn">Back</button>
+                <button id="nextStep" class="step-btn">Next</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
