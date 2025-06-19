@@ -205,7 +205,7 @@
         </div>
     </div>
 
-    <script src="get-pro-modals.js"></script>
+    <script src="get-pro-modal-with-jotform.js"></script>
 
     
     <div id="stepModal" class="modal" style="display: none;">
@@ -284,7 +284,6 @@
                         <h2 class="step-h2">Review & Confirm</h2>
                         <div class="step-confirm-box">
                             <div class="step-confirm-icon">✔️</div>
-                            <div class="step-confirm-message">Thank you! Please review your details and click Submit to finish.</div>
                         </div>
                         <button class="step-btn" id="submitStep">Submit</button>
                     </div>
@@ -311,7 +310,30 @@
             </div>
             <div class="step-modal-footer">
                 <button id="prevStep" class="step-btn">Back</button>
+                <button id="confirmStep" class="step-btn" style="display: none;">Confirm</button>
                 <button id="nextStep" class="step-btn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <form id="jotform-submit" action="https://submit.jotform.com/submit/251691010592048/" method="post" style="display:none">
+      <input type="text" name="q4_service" id="jot_service">
+      <input type="text" name="q6_typeA6" id="jot_nature">
+      <input type="text" name="q7_typeA7" id="jot_zipcode">
+      <input type="text" name="q9_typeA9" id="jot_name">
+      <input type="text" name="q8_typeA8" id="jot_email">
+      <input type="text" name="q10_typeA10" id="jot_phone">
+    </form>
+
+  
+    <div id="thankYouModal" class="thank-you-modal" style="display: none;">
+        <div class="thank-you-modal-content">
+            <button class="thank-you-close" aria-label="Close">&times;</button>
+            <div class="thank-you-body">
+                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#1cb75d"/><path d="M7 13l3 3 7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <h3>Thank You!</h3>
+                <p>Your submission has been received.</p>
             </div>
         </div>
     </div>

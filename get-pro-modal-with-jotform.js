@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Open modal for all buttons
     for (let i = 0; i < openBtns.length; i++) {
         openBtns[i].onclick = function() {
+            // Reset step modal state when opening
+            currentStep = 0;
+            updateStepModal();
             modal.style.display = 'block';
         };
     }
@@ -41,7 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const stepContent = document.getElementById('stepContent');
     const prevStepBtn = document.getElementById('prevStep');
     const nextStepBtn = document.getElementById('nextStep');
-    const serviceIcons = document.querySelectorAll('.service-icon');
+    const confirmStepBtn = document.getElementById('confirmStep');
+    const serviceColumns = document.querySelectorAll('.service-column');
     const stepModalTitle = document.getElementById('stepModalTitle');
     const progressStepLabel = document.getElementById('progressStepLabel');
 
@@ -181,7 +185,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <li><strong>Phone:</strong> ${formData.phone}</li>
                     </ul>
                     <button id="editSummaryBtn" class="step-btn">Edit</button>
-                    <div class="summary-thankyou">Thank you! We will contact you soon.</div>
                 </div>
             `;
             // Add event listener for Edit button
@@ -225,10 +228,11 @@ document.addEventListener('DOMContentLoaded', function() {
             nextStepBtn.textContent = 'Get Quote';
             nextStepBtn.style.display = 'inline-block';
         } else if (currentStep === 4) {
-            nextStepBtn.style.display = 'none';
+            if (confirmStepBtn) confirmStepBtn.style.display = 'inline-block';
+            if (nextStepBtn) nextStepBtn.style.display = 'none';
         } else {
-            nextStepBtn.textContent = 'Next';
-            nextStepBtn.style.display = 'inline-block';
+            if (confirmStepBtn) confirmStepBtn.style.display = 'none';
+            if (nextStepBtn && currentStep !== 4) nextStepBtn.style.display = 'inline-block';
         }
         stepModalTitle.textContent = selectedService ? `${selectedService} - Step ${Math.min(currentStep + 1, 5)}` : `Step ${Math.min(currentStep + 1, 5)}`;
         progressStepLabel.textContent = `Step ${Math.min(currentStep + 1, 5)} of 5`;
@@ -256,6 +260,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function validateEmail(email) {
+        // Simple email regex
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validatePhone(phone) {
+        // Accepts (555) 123-4567, 555-123-4567, 5551234567, 555.123.4567
+        return /^(\(\d{3}\)|\d{3})[ .-]?\d{3}[ .-]?\d{4}$/.test(phone);
+    }
+
     function validateStep() {
         if (currentStep === 0) {
             return document.querySelector('input[name="nature"]:checked');
@@ -272,14 +286,17 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentStep === 3) {
             const email = document.getElementById('email');
             const phone = document.getElementById('phone');
-            return email && phone && email.value.trim().length > 0 && phone.value.trim().length > 0;
+            return email && phone &&
+                validateEmail(email.value.trim()) &&
+                validatePhone(phone.value.trim());
         }
         return true;
     }
 
-    serviceIcons.forEach(icon => {
-        icon.addEventListener('click', function() {
-            selectedService = this.nextElementSibling ? this.nextElementSibling.textContent : '';
+    serviceColumns.forEach(column => {
+        column.addEventListener('click', function() {
+            const serviceName = this.querySelector('.service-name');
+            selectedService = serviceName ? serviceName.textContent : '';
             currentStep = 0;
             updateStepModal();
             stepModal.style.display = 'block';
@@ -314,17 +331,51 @@ document.addEventListener('DOMContentLoaded', function() {
             // Optionally, handle form submission here
         }
     };
-    window.addEventListener('click', function(event) {
-        if (event.target == stepModal) {
+    if (confirmStepBtn) {
+        confirmStepBtn.onclick = function(e) {
+            e.preventDefault(); // Prevent default form submission if inside a form
+            // Fill Jotform hidden form fields with summary data
+            document.getElementById('jot_service').value = selectedService;
+            document.getElementById('jot_nature').value = formData.nature === 'replace-install' ? 'Replace or install' : formData.nature === 'repair' ? 'Repair' : '';
+            document.getElementById('jot_zipcode').value = formData.zipCode;
+            document.getElementById('jot_name').value = formData.firstName + ' ' + formData.lastName;
+            document.getElementById('jot_email').value = formData.email;
+            document.getElementById('jot_phone').value = formData.phone;
+            // Instead of submitting the form, send data via AJAX
+            var form = document.getElementById('jotform-submit');
+            var formDataObj = new FormData(form);
+            fetch(form.action, {
+                method: 'POST',
+                body: formDataObj,
+                mode: 'no-cors'
+            });
+            // Show Thank You modal only when Confirm is clicked
+            document.getElementById('thankYouModal').style.display = 'block';
             stepModal.style.display = 'none';
-        }
-    });
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            stepModal.style.display = 'none';
-        }
-    });
+        };
+    }
+    // Thank You Modal logic
+    const thankYouModal = document.getElementById('thankYouModal');
+    const thankYouClose = document.querySelector('.thank-you-close');
 
+    if (thankYouModal && thankYouClose) {
+        thankYouClose.onclick = function() {
+            thankYouModal.style.display = 'none';
+        };
+        window.addEventListener('click', function(event) {
+            if (event.target === thankYouModal) {
+                thankYouModal.style.display = 'none';
+            }
+        });
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                thankYouModal.style.display = 'none';
+            }
+        });
+    }
+
+    // To show the thank you modal, call:
+    // thankYouModal.style.display = 'flex';
     // Ensure Back/Next always visible in footer
     prevStepBtn.style.display = 'none';
 });
