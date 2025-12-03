@@ -6,11 +6,6 @@
     --secondary-text: #808285;
 }
 
-body {
-    color: var(--main-text);
-    background-color: var(--main-bg);
-}
-
 /* Example usage for secondary colors */
 h1, h2, h3, h4, h5, h6 {
     color: var(--main-text);
@@ -57,6 +52,13 @@ small, .subtle, .muted {
     color: black;
 }
 
+
+/* Hide open-btn on mobile view */
+@media (max-width: 768px) {
+    .open-btn {
+        display: none;
+    }
+}
 
 .modal {
     display: none;
@@ -704,6 +706,19 @@ small, .subtle, .muted {
     left: 0;
     font-size: 1.2em;
     top: 0.1em;
+}
+
+/* reCAPTCHA Container Styling */
+#recaptcha-container {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    min-height: 78px;
+    padding: 10px 0;
+}
+
+#recaptcha-container > div {
+    margin: 0 auto;
 }
 
 .summary-thankyou {

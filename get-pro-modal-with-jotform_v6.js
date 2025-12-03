@@ -13,6 +13,18 @@ document.addEventListener('DOMContentLoaded', function() {
         openBtns[i].onclick = function() {
             // Reset step modal state when opening
             currentStep = 0;
+            // Reset reCAPTCHA state
+            if (recaptchaWidgetId !== null && typeof grecaptcha !== 'undefined') {
+                try {
+                    grecaptcha.reset(recaptchaWidgetId);
+                } catch (error) {
+                    console.error('Error resetting reCAPTCHA:', error);
+                }
+            }
+            recaptchaWidgetId = null;
+            recaptchaCompleted = false;
+            recaptchaResponseToken = null;
+            recaptchaTokenTimestamp = null;
             updateStepModal();
             modal.style.display = 'block';
         };
@@ -58,8 +70,11 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
     let currentStep = 0;
     let selectedService = '';
-    let recaptchaWidgetId = null; // Store reCAPTCHA widget ID
     let recaptchaCompleted = false; // Track if reCAPTCHA is completed
+    let recaptchaResponseToken = null; // Store the reCAPTCHA response token directly
+    let recaptchaTokenTimestamp = null; // Store when token was generated (tokens expire after 2 minutes)
+    let recaptchaWidgetId = null; // Store reCAPTCHA widget ID for v2
+    
     // Store form data for all steps
     let formData = {
         nature: '',
@@ -91,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const step2ZipHTML = `
         <div id="step2-zip" class="step-zip">
             <h2 class="step-h2">What is your zip code?</h2>
-            <input type="text" id="zipCode" name="zipCode" maxlength="10" placeholder="Zip Code" class="step-input" />
+            <input type="text" id="zipCode" name="zipCode" maxlength="10" placeholder="Zip Code" class="step-input" required />
         </div>
     `;
 
@@ -101,11 +116,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <h2 class="step-h2">Please enter your full name</h2>
             <div>
                 <label for="firstName">First Name</label><br>
-                <input type="text" id="firstName" name="firstName" placeholder="First Name" class="step-input" />
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" class="step-input" required />
             </div>
             <div>
                 <label for="lastName">Last Name</label><br>
-                <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="step-input" />
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="step-input" required />
             </div>
         </div>
     `;
@@ -116,11 +131,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <h2 class="step-h2">How can we contact you?</h2>
             <div>
                 <label for="email">Email Address</label><br>
-                <input type="email" id="email" name="email" placeholder="jane.doe@email.com" class="step-input" />
+                <input type="email" id="email" name="email" placeholder="jane.doe@email.com" class="step-input" required />
             </div>
             <div>
                 <label for="phone">Phone Number</label><br>
-                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" class="step-input" />
+                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" class="step-input" required />
             </div>
         </div>
     `;
@@ -186,56 +201,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         <li><strong>Email:</strong> ${formData.email}</li>
                         <li><strong>Phone:</strong> ${formData.phone}</li>
                     </ul>
-                    <div class="disclaimer" style="margin-top: 24px; font-size: 12px; color: #888; text-align: center; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto;">
-                        By submitting your request, you agree to be contacted by phone, text, or email by our network of home service professionals. Calls may be auto-dialed or pre-recorded. Consent is not required for purchase.
-                    </div>
-                    <div id="recaptcha-container" style="margin: 20px 0; display: flex; justify-content: center;"></div>
+                    <div id="recaptcha-container-step4" style="margin: 20px 0; display: flex; justify-content: center;"></div>
                     <button id="editSummaryBtn" class="step-btn">Edit</button>
                 </div>
             `;
-            // Render reCAPTCHA when step 4 is shown
+            
+            // Render reCAPTCHA on step 4 (last step)
             setTimeout(() => {
-                // Check if reCAPTCHA is already rendered to avoid duplicate rendering
-                if (typeof grecaptcha !== 'undefined' && !document.querySelector('#recaptcha-container iframe')) {
-                    try {
-                        recaptchaWidgetId = grecaptcha.render('recaptcha-container', {
-                            // IMPORTANT: Replace 'YOUR_RECAPTCHA_SITE_KEY' with your actual site key
-                            // Get your site key from: https://www.google.com/recaptcha/admin/create
-                            // Choose reCAPTCHA v2 "I'm not a robot" Checkbox
-                            'sitekey': '6LefXR8sAAAAACFqVvV15LVrRMJSqVMXqmmk66Bq',
-                            'callback': function(response) {
-                                // This callback is called when the user completes the captcha
-                                console.log('reCAPTCHA verified:', response);
-                                recaptchaCompleted = true;
-                                // Enable the Confirm button or show a visual indicator
-                                const confirmBtn = document.getElementById('confirmStep');
-                                if (confirmBtn) {
-                                    confirmBtn.style.opacity = '1';
-                                    confirmBtn.style.cursor = 'pointer';
-                                }
-                            },
-                            'expired-callback': function() {
-                                // This callback is called when the captcha expires
-                                console.log('reCAPTCHA expired');
-                                recaptchaWidgetId = null;
-                                recaptchaCompleted = false;
-                            },
-                            'error-callback': function() {
-                                console.log('reCAPTCHA error occurred');
-                                recaptchaCompleted = false;
-                            }
-                        });
-                    } catch (error) {
-                        console.error('Error rendering reCAPTCHA:', error);
-                    }
-                }
+                renderRecaptchaWidget();
                 
                 // Add event listener for Edit button
                 const editBtn = document.getElementById('editSummaryBtn');
                 if (editBtn) {
                     editBtn.onclick = function() {
-                        // Reset captcha when going back
-                        if (typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== null) {
+                        // Reset reCAPTCHA when going back
+                        if (recaptchaWidgetId !== null && typeof grecaptcha !== 'undefined') {
                             try {
                                 grecaptcha.reset(recaptchaWidgetId);
                             } catch (error) {
@@ -244,6 +224,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                         recaptchaWidgetId = null;
                         recaptchaCompleted = false;
+                        recaptchaResponseToken = null;
+                        recaptchaTokenTimestamp = null;
                         currentStep = 0;
                         updateStepModal();
                     };
@@ -276,14 +258,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         prevStepBtn.style.display = currentStep === 0 ? 'none' : 'inline-block';
+        
         if (currentStep === 3) {
             nextStepBtn.textContent = 'Get Quote';
             nextStepBtn.style.display = 'inline-block';
+            nextStepBtn.disabled = false;
+            nextStepBtn.style.opacity = '1';
+            nextStepBtn.style.cursor = 'pointer';
             if (confirmStepBtn) confirmStepBtn.style.display = 'none';
         } else if (currentStep === 4) {
             if (confirmStepBtn) {
                 confirmStepBtn.style.display = 'inline-block';
                 confirmStepBtn.textContent = 'Confirm';
+                // Button state is managed by reCAPTCHA callback
+                // Initially disabled until reCAPTCHA is completed
+                if (!recaptchaCompleted) {
+                    confirmStepBtn.disabled = true;
+                    confirmStepBtn.style.opacity = '0.5';
+                    confirmStepBtn.style.cursor = 'not-allowed';
+                }
             }
             if (nextStepBtn) nextStepBtn.style.display = 'none';
         } else {
@@ -291,6 +284,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (nextStepBtn && currentStep !== 4) {
                 nextStepBtn.style.display = 'inline-block';
                 nextStepBtn.textContent = 'Next';
+                nextStepBtn.disabled = false;
+                nextStepBtn.style.opacity = '1';
+                nextStepBtn.style.cursor = 'pointer';
             }
         }
         stepModalTitle.textContent = selectedService ? `${selectedService} - Step ${Math.min(currentStep + 1, 5)}` : `Step ${Math.min(currentStep + 1, 5)}`;
@@ -367,7 +363,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             return true;
         }
-        // Validation removed for all steps
         return true;
     }
 
@@ -376,6 +371,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const serviceName = this.querySelector('.service-name');
             selectedService = serviceName ? serviceName.textContent : '';
             currentStep = 0;
+            // Reset reCAPTCHA state when starting a new form
+            if (recaptchaWidgetId !== null && typeof grecaptcha !== 'undefined') {
+                try {
+                    grecaptcha.reset(recaptchaWidgetId);
+                } catch (error) {
+                    console.error('Error resetting reCAPTCHA:', error);
+                }
+            }
+            recaptchaWidgetId = null;
+            recaptchaCompleted = false;
+            recaptchaResponseToken = null;
+            recaptchaTokenTimestamp = null;
             updateStepModal();
             stepModal.style.display = 'block';
         });
@@ -386,15 +393,10 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     prevStepBtn.onclick = function() {
         if (currentStep > 0) {
-            // Reset captcha if going back from step 4
-            if (currentStep === 4 && typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== null) {
-                try {
-                    grecaptcha.reset(recaptchaWidgetId);
-                } catch (error) {
-                    console.error('Error resetting reCAPTCHA:', error);
-                }
-                recaptchaWidgetId = null;
+            // Reset state if going back from step 4
+            if (currentStep === 4) {
                 recaptchaCompleted = false;
+                recaptchaResponseToken = null;
             }
             saveStepData();
             currentStep--;
@@ -419,101 +421,198 @@ document.addEventListener('DOMContentLoaded', function() {
             // Optionally, handle form submission here
         }
     };
+    // Function to render visible reCAPTCHA v2 widget
+    function renderRecaptchaWidget() {
+        // Check if reCAPTCHA is loaded
+        if (typeof grecaptcha === 'undefined') {
+            console.warn('reCAPTCHA not loaded yet, will retry...');
+            setTimeout(renderRecaptchaWidget, 500);
+            return;
+        }
+        
+        const container = document.getElementById('recaptcha-container-step4');
+        if (!container) {
+            console.error('reCAPTCHA container not found');
+            return;
+        }
+        
+        // Check if widget is already rendered
+        if (container.querySelector('iframe')) {
+            console.log('reCAPTCHA widget already rendered');
+            return;
+        }
+        
+        try {
+            console.log('Rendering reCAPTCHA v2 widget on step 4 (last step)...');
+            // IMPORTANT: You need a reCAPTCHA v2 site key (not Enterprise) for the visible checkbox
+            // Get your v2 key from: https://www.google.com/recaptcha/admin/create
+            // Choose: reCAPTCHA v2 → "I'm not a robot" Checkbox
+            recaptchaWidgetId = grecaptcha.render('recaptcha-container-step4', {
+                'sitekey': '6LdAmh8sAAAAAIjU46wANXBj4nkrtIL7ZFJyCZDf',
+                'callback': function(response) {
+                    // This callback is called when the user completes the captcha
+                    console.log('✓ reCAPTCHA verified - Response received, length:', response ? response.length : 0);
+                    recaptchaResponseToken = response;
+                    recaptchaTokenTimestamp = Date.now();
+                    recaptchaCompleted = true;
+                    
+                    // Enable the Confirm button
+                    const confirmBtn = document.getElementById('confirmStep');
+                    if (confirmBtn) {
+                        confirmBtn.disabled = false;
+                        confirmBtn.style.opacity = '1';
+                        confirmBtn.style.cursor = 'pointer';
+                    }
+                    console.log('✓ reCAPTCHA completed - user can now submit');
+                },
+                'expired-callback': function() {
+                    console.log('reCAPTCHA expired');
+                    recaptchaCompleted = false;
+                    recaptchaResponseToken = null;
+                    recaptchaTokenTimestamp = null;
+                    
+                    // Disable the Confirm button
+                    const confirmBtn = document.getElementById('confirmStep');
+                    if (confirmBtn) {
+                        confirmBtn.disabled = true;
+                        confirmBtn.style.opacity = '0.5';
+                        confirmBtn.style.cursor = 'not-allowed';
+                    }
+                },
+                'error-callback': function(error) {
+                    console.error('reCAPTCHA error occurred:', error);
+                    recaptchaCompleted = false;
+                    recaptchaResponseToken = null;
+                    
+                    // Show user-friendly error message
+                    const container = document.getElementById('recaptcha-container-step4');
+                    if (container) {
+                        const errorMsg = document.createElement('div');
+                        errorMsg.style.cssText = 'color: #d32f2f; padding: 10px; margin-top: 10px; text-align: center; font-size: 14px;';
+                        errorMsg.innerHTML = '⚠️ reCAPTCHA error: Please check your site key. You need a <strong>reCAPTCHA v2</strong> key (not Enterprise) for the visible checkbox.';
+                        container.appendChild(errorMsg);
+                    }
+                }
+            });
+            console.log('reCAPTCHA widget rendered with ID:', recaptchaWidgetId);
+            
+            // Initially disable Confirm button until reCAPTCHA is completed
+            const confirmBtn = document.getElementById('confirmStep');
+            if (confirmBtn) {
+                confirmBtn.disabled = true;
+                confirmBtn.style.opacity = '0.5';
+                confirmBtn.style.cursor = 'not-allowed';
+            }
+        } catch (error) {
+            console.error('Error rendering reCAPTCHA:', error);
+        }
+    }
+    
     if (confirmStepBtn) {
-        confirmStepBtn.onclick = function(e) {
+        confirmStepBtn.onclick = async function(e) {
             e.preventDefault(); // Prevent default form submission if inside a form
             
-            // Validate reCAPTCHA before submitting
-            if (typeof grecaptcha === 'undefined') {
-                alert('reCAPTCHA is not loaded. Please refresh the page and try again.');
+            // Check if reCAPTCHA is completed
+            if (!recaptchaCompleted || !recaptchaResponseToken) {
+                alert('Please complete the reCAPTCHA verification before submitting.');
                 return;
             }
             
-            // Try multiple methods to get the reCAPTCHA response
-            let recaptchaResponse = '';
+            // Disable button to prevent double-clicks
+            const btn = e.target;
+            btn.disabled = true;
+            btn.textContent = 'Processing...';
             
-            // Method 1: Try with widget ID if we have it
-            if (recaptchaWidgetId !== null) {
-                try {
-                    recaptchaResponse = grecaptcha.getResponse(recaptchaWidgetId);
-                } catch (e) {
-                    console.log('Error getting response with widget ID:', e);
-                }
-            }
+            // Check if token is still valid (v2 tokens don't expire as quickly, but check anyway)
+            const now = Date.now();
+            const tokenExpired = !recaptchaTokenTimestamp || (now - recaptchaTokenTimestamp) >= 120000;
             
-            // Method 2: Try without widget ID (fallback)
-            if (!recaptchaResponse || recaptchaResponse.length === 0) {
-                try {
-                    recaptchaResponse = grecaptcha.getResponse();
-                } catch (e) {
-                    console.log('Error getting response without widget ID:', e);
-                }
-            }
-            
-            // Method 3: Try to find response from any widget
-            if (!recaptchaResponse || recaptchaResponse.length === 0) {
-                try {
-                    // Check all possible widget IDs (0, 1, 2, etc.)
-                    for (let i = 0; i < 10; i++) {
-                        const testResponse = grecaptcha.getResponse(i);
-                        if (testResponse && testResponse.length > 0) {
-                            recaptchaResponse = testResponse;
-                            console.log('Found reCAPTCHA response at widget ID:', i);
-                            break;
+            if (tokenExpired) {
+                // Token expired, need to get new response
+                if (recaptchaWidgetId !== null && typeof grecaptcha !== 'undefined') {
+                    try {
+                        const newResponse = grecaptcha.getResponse(recaptchaWidgetId);
+                        if (newResponse && newResponse.length > 0) {
+                            recaptchaResponseToken = newResponse;
+                            recaptchaTokenTimestamp = Date.now();
+                            console.log('✓ Refreshed reCAPTCHA token');
+                        } else {
+                            alert('reCAPTCHA has expired. Please refresh the page and complete it again.');
+                            btn.disabled = false;
+                            btn.textContent = 'Confirm';
+                            return;
                         }
+                    } catch (error) {
+                        console.error('Error getting reCAPTCHA response:', error);
+                        alert('reCAPTCHA verification failed. Please refresh the page and try again.');
+                        btn.disabled = false;
+                        btn.textContent = 'Confirm';
+                        return;
                     }
-                } catch (e) {
-                    console.log('Error checking widget IDs:', e);
-                }
-            }
-            
-            // Final validation
-            if (!recaptchaResponse || recaptchaResponse.length === 0) {
-                // Check if reCAPTCHA widget exists and is visible
-                const recaptchaContainer = document.querySelector('#recaptcha-container');
-                if (recaptchaContainer && recaptchaContainer.querySelector('iframe')) {
-                    alert('Please complete the reCAPTCHA verification correctly. After selecting the correct images, make sure you click "NEXT" or "Verify" to complete the challenge. If you\'ve already done this, try refreshing the reCAPTCHA and completing it again.');
                 } else {
-                    alert('Please complete the reCAPTCHA verification before submitting.');
-                }
-                console.log('reCAPTCHA response check failed. Widget ID:', recaptchaWidgetId, 'Completed flag:', recaptchaCompleted);
-                return;
-            }
-            
-            console.log('reCAPTCHA response found, length:', recaptchaResponse.length);
-            
-            // Fill Jotform hidden form fields with summary data
-            document.getElementById('jot_service').value = selectedService;
-            document.getElementById('jot_nature').value = formData.nature === 'replace-install' ? 'Replace or install' : formData.nature === 'repair' ? 'Repair' : '';
-            document.getElementById('jot_zipcode').value = formData.zipCode;
-            document.getElementById('jot_name').value = formData.firstName + ' ' + formData.lastName;
-            document.getElementById('jot_email').value = formData.email;
-            document.getElementById('jot_phone').value = formData.phone;
-            
-            // Instead of submitting the form, send data via AJAX
-            var form = document.getElementById('jotform-submit');
-            var formDataObj = new FormData(form);
-            fetch(form.action, {
-                method: 'POST',
-                body: formDataObj,
-                mode: 'no-cors'
-            });
-            
-            // Reset captcha after successful submission
-            if (typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== null) {
-                try {
-                    grecaptcha.reset(recaptchaWidgetId);
-                } catch (error) {
-                    console.error('Error resetting reCAPTCHA:', error);
+                    alert('reCAPTCHA verification failed. Please refresh the page and try again.');
+                    btn.disabled = false;
+                    btn.textContent = 'Confirm';
+                    return;
                 }
             }
-            recaptchaWidgetId = null;
-            recaptchaCompleted = false;
             
-            // Show Thank You modal only when Confirm is clicked
-            document.getElementById('thankYouModal').style.display = 'block';
-            stepModal.style.display = 'none';
+            // Proceed with form submission
+            console.log('✓ Using reCAPTCHA token for submission');
+            submitForm();
         };
+    }
+    
+    function submitForm() {
+        // Fill Jotform hidden form fields with summary data
+        document.getElementById('jot_service').value = selectedService;
+        document.getElementById('jot_nature').value = formData.nature === 'replace-install' ? 'Replace or install' : formData.nature === 'repair' ? 'Repair' : '';
+        document.getElementById('jot_zipcode').value = formData.zipCode;
+        document.getElementById('jot_name').value = formData.firstName + ' ' + formData.lastName;
+        document.getElementById('jot_email').value = formData.email;
+        document.getElementById('jot_phone').value = formData.phone;
+        
+        // Instead of submitting the form, send data via AJAX
+        var form = document.getElementById('jotform-submit');
+        var formDataObj = new FormData(form);
+        
+        // Add reCAPTCHA Enterprise token to the FormData
+        // JotForm typically expects 'g-recaptcha-response' for reCAPTCHA tokens
+        if (recaptchaResponseToken) {
+            formDataObj.append('g-recaptcha-response', recaptchaResponseToken);
+            console.log('✓ reCAPTCHA Enterprise token added to form submission');
+        } else {
+            console.warn('⚠ reCAPTCHA token missing - form will submit without token');
+        }
+        
+        // Log the form data being sent (for debugging)
+        console.log('Submitting form data:');
+        for (let pair of formDataObj.entries()) {
+            if (pair[0] === 'g-recaptcha-response') {
+                console.log(pair[0] + ': ' + pair[1].substring(0, 50) + '... (token length: ' + pair[1].length + ')');
+            } else {
+                console.log(pair[0] + ': ' + pair[1]);
+            }
+        }
+        
+        fetch(form.action, {
+            method: 'POST',
+            body: formDataObj,
+            mode: 'no-cors'
+        }).then(() => {
+            console.log('✓ Form submitted successfully');
+        }).catch((error) => {
+            console.error('Error submitting form:', error);
+        });
+        
+        // Reset state
+        recaptchaCompleted = false;
+        recaptchaResponseToken = null;
+        recaptchaTokenTimestamp = null;
+        
+        // Show Thank You modal
+        document.getElementById('thankYouModal').style.display = 'block';
+        stepModal.style.display = 'none';
     }
     // Thank You Modal logic
     const thankYouModal = document.getElementById('thankYouModal');
